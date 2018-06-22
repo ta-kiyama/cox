@@ -31,7 +31,7 @@ cox(function* (arg) {
   console.log(result); // 250
   
   // yield only variables or literals
-  const result = yield [null, 100, 200];
+  result = yield [null, 100, 200];
   console.log(result); // 100 (always only returning second argument)
 })("fuga");
 ```
@@ -63,7 +63,7 @@ cox(async function* (arg) {
   console.log(result); // 50
   
   // yield only variables or literals
-  const result = yield [null, 100, 200];
+  result = yield [null, 100, 200];
   console.log(result); // 100 (always only returning second argument)
 })("hoge");
 ```
