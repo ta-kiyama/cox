@@ -1,5 +1,9 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 const generateEffect = typeSymbol => (callback, ...args) => {
   if (Array.isArray(callback)) {
     [callback, args] = [callback.shift(), callback];
@@ -71,8 +75,6 @@ const cox = gen => function() {
     return value;
   }
 };
-
-module.exports = cox;
 
 const execSymbol = (exports.execSymbol = Symbol("exec"));
 const callSymbol = (exports.callSymbol = Symbol("call"));
