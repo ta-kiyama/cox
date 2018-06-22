@@ -5,7 +5,7 @@ redux-saga like proxy generator with Async Generator
 
 # install
 
-`npm install -D cox`
+`npm install -D @ta-kiyama/cox`
 
 # sample
 
