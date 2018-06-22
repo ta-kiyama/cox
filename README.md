@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/%40ta-kiyama%2Fcox.svg)](https://badge.fury.io/js/%40ta-kiyama%2Fcox)
+
 # cox
 redux-saga like proxy generator with Async Generator
 
