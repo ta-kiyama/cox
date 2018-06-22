@@ -13,10 +13,14 @@ const cox = gen => function() {
         const func = value.shift();
 
         let nextArg;
-        if (typeof func === "function") {
-          nextArg = func(...value);
+        if (func != null) {
+          if (typeof func === "function") {
+            nextArg = func(...value);
+          } else {
+            nextArg = func[0].call(func[1], ...value);
+          }
         } else {
-          nextArg = func[0].call(func[1], ...value);
+          nextArg = value;
         }
 
         const result = await itr.next(nextArg);
@@ -32,10 +36,14 @@ const cox = gen => function() {
       const func = value.shift();
 
       let nextArg;
-      if (typeof func === "function") {
-        nextArg = func(...value);
+      if (func != null) {
+        if (typeof func === "function") {
+          nextArg = func(...value);
+        } else {
+          nextArg = func[0].call(func[1], ...value);
+        }
       } else {
-        nextArg = func[0].call(func[1], ...value);
+        nextArg = value;
       }
 
       const result = itr.next(nextArg);
