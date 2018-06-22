@@ -20,7 +20,7 @@ const cox = gen => function() {
             nextArg = func[0].call(func[1], ...value);
           }
         } else {
-          nextArg = value;
+          nextArg = value[0];
         }
 
         const result = await itr.next(nextArg);
@@ -43,7 +43,7 @@ const cox = gen => function() {
           nextArg = func[0].call(func[1], ...value);
         }
       } else {
-        nextArg = value;
+        nextArg = value[0];
       }
 
       const result = itr.next(nextArg);

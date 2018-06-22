@@ -27,7 +27,8 @@ cox(function* (arg) {
   console.log(result); // 250
   
   // yield only variables or literals
-  yield [null, 100, 200];
+  const result = yield [null, 100, 200];
+  console.log(result); // 100 (always only returning second argument)
 })("fuga");
 ```
 
@@ -52,6 +53,10 @@ cox(async function* (arg) {
   func = (n) => Promise.resolve(n);
   result = await (yield [func, 50]);
   console.log(result); // 50
+  
+  // yield only variables or literals
+  const result = yield [null, 100, 200];
+  console.log(result); // 100 (always only returning second argument)
 })("hoge");
 ```
 
