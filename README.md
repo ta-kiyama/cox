@@ -30,8 +30,15 @@ cox(function* (arg) {
   result = yield [[func, 200], 50];
   console.log(result); // 250
   
+  // create new instance from class
+  class Klass() {
+    constructor(x) { this.num = x; }
+  }
+  result = yield [Reflect.construct, Klass, [18]];
+  console.log(result.num); // 18
+  
   // yield only variables or literals
-  result = yield [null, 100, 200];
+  const result = yield [null, 100, 200];
   console.log(result); // 100 (always only returning second argument)
 })("fuga");
 ```
@@ -57,13 +64,20 @@ cox(async function* (arg) {
   result = yield [[func, 100], 20];
   console.log(result); // 120
   
+  // create new instance from class
+  class Klass() {
+    constructor(x) { this.num = x; }
+  }
+  result = yield [Reflect.construct, Klass, [18]];
+  console.log(result.num); // 18
+  
   // call async-function
   func = (n) => Promise.resolve(n);
   result = await (yield [func, 50]);
   console.log(result); // 50
   
   // yield only variables or literals
-  result = yield [null, 100, 200];
+  const result = yield [null, 100, 200];
   console.log(result); // 100 (always only returning second argument)
 })("hoge");
 ```
