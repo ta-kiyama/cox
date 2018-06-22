@@ -1,0 +1,20 @@
+{
+  "name": "cox",
+  "version": "1.0.0",
+  "description": "redux-saga like proxy generator with Async Generator",
+  "main": "index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ta-kiyama/cox.git"
+  },
+  "keywords": [],
+  "author": "ta-kiyama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ta-kiyama/cox/issues"
+  },
+  "homepage": "https://github.com/ta-kiyama/cox#readme"
+}
