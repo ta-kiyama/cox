@@ -82,7 +82,7 @@ cox(async function* (arg) {
     ```
 1. [testing file] you just only import `someworker`
     ```js
-    // ./main.js
+    // ./main.test.js
     import worker from "./someworker";
     
     test("someworker", async() => {
