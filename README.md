@@ -18,6 +18,10 @@ cox(function* (arg) {
   console.log(arg); // "fuga"
   
   // call sync-function
+  result = yield Date.now;
+  console.log(result); // 1529633615127
+  
+  // call sync-function with argument
   result = yield [JSON.stringify, { x: 60 }];
   console.log(result); // {"x":60}
   
@@ -39,6 +43,10 @@ cox(async function* (arg) {
   let result, func;
   
   console.log(arg); // "hoge"
+  
+  // call sync-function
+  result = yield Date.now;
+  console.log(result); // 1529633615127
   
   // call sync-function
   result = yield [JSON.stringify, { a: 10 }];

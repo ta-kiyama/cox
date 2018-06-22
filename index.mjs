@@ -9,6 +9,8 @@ const cox = gen => function() {
     return (async () => {
       let { value, done } = await firstResult;
 
+      if(!Array.isArray(value)) value = [value];
+
       while (!done) {
         const func = value.shift();
 
@@ -32,6 +34,9 @@ const cox = gen => function() {
     })();
   } else {
     let { value, done } = firstResult;
+
+    if(!Array.isArray(value)) value = [value];
+
     while (!done) {
       const func = value.shift();
 
