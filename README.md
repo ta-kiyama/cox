@@ -15,32 +15,32 @@ redux-saga like proxy generator with Async Generator
 cox(function* (arg) {
   let result, func;
   
-  console.log(arg); // "fuga"
+  console.log(arg); // "hoge"
   
   // call sync-function
-  result = yield Date.now;
+  result = yield exec(Date.now);
   console.log(result); // 1529633615127
-  
-  // call sync-function with argument
-  result = yield [JSON.stringify, { x: 60 }];
-  console.log(result); // {"x":60}
+
+  // call sync-function
+  result = yield exec(JSON.stringify, { a: 10 });
+  console.log(result); // {"a":10}
   
   // call sync-function with this
   func = function(num) { return Number(this) + num; };
-  result = yield [[func, 200], 50];
-  console.log(result); // 250
+  result = yield call(func, 100, 20);
+  console.log(result); // 120
   
   // create new instance from class
-  class Klass() {
+  class Klass {
     constructor(x) { this.num = x; }
   }
-  result = yield [Reflect.construct, Klass, [18]];
+  result = yield make(Klass, 18);
   console.log(result.num); // 18
   
   // yield only variables or literals
-  const result = yield [null, 100, 200];
-  console.log(result); // 100 (always only returning second argument)
-})("fuga");
+  result = yield [100, 200];
+  console.log(result); // [100, 200]
+})("hoge");
 ```
 
 ## async function
@@ -49,37 +49,37 @@ cox(function* (arg) {
 cox(async function* (arg) {
   let result, func;
   
-  console.log(arg); // "hoge"
+  console.log(arg); // "fuga"
   
   // call sync-function
-  result = yield Date.now;
+  result = yield exec(Date.now);
   console.log(result); // 1529633615127
-  
+
   // call sync-function
-  result = yield [JSON.stringify, { a: 10 }];
+  result = yield exec(JSON.stringify, { a: 10 });
   console.log(result); // {"a":10}
   
   // call sync-function with this
   func = function(num) { return Number(this) + num; };
-  result = yield [[func, 100], 20];
+  result = yield call(func, 100, 20);
   console.log(result); // 120
   
   // create new instance from class
-  class Klass() {
+  class Klass {
     constructor(x) { this.num = x; }
   }
-  result = yield [Reflect.construct, Klass, [18]];
+  result = yield make(Klass, 18);
   console.log(result.num); // 18
   
   // call async-function
   func = (n) => Promise.resolve(n);
-  result = await (yield [func, 50]);
+  result = await (yield exec(func, 50));
   console.log(result); // 50
   
   // yield only variables or literals
-  const result = yield [null, 100, 200];
-  console.log(result); // 100 (always only returning second argument)
-})("hoge");
+  result = yield [100, 200];
+  console.log(result); // [100, 200]
+})("fuga");
 ```
 
 # test
@@ -91,7 +91,7 @@ cox(async function* (arg) {
       // do somethings...
       
       // example: JSON.stringify proxy
-      yield [JSON.stringify, {"a": 10}]
+      yield exec(JSON.stringify, { a: 10 });
     };
     ```
 1. [not testing file] import `cox` and `someworker`
@@ -114,9 +114,14 @@ cox(async function* (arg) {
     
     test("someworker", async() => {
       const func = worker();
+      let result;
       
-      const [stringify, obj] = await func.next();
+      result = await func.next();
       
-      expect(obj).toMatchObject({ a: 10 });
+      expect(callback).toBe(JSON.parse));
+      expect(args).toMatchObject({ a: 10 });
+      
+      result = await func.next(result);
+      ...
     });
     ```
