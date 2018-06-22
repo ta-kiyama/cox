@@ -37,6 +37,15 @@ cox(function* (arg) {
   result = yield make(Klass, 18);
   console.log(result.num); // 18
   
+  // call chain methods
+  result = yield* chain(
+    [1, 2, 3, 4, 5],
+    [t => t.map, x => x * 2],
+    [t => t.map, x => x + 1],
+    [t => t.filter, x => x % 3 === 0],
+  );
+  console.log(result); // [3, 9]
+  
   // yield only variables or literals
   result = yield [100, 200];
   console.log(result); // [100, 200]
@@ -70,6 +79,15 @@ cox(async function* (arg) {
   }
   result = yield make(Klass, 18);
   console.log(result.num); // 18
+  
+  // call chain methods
+  result = yield* chain(
+    [1, 2, 3, 4, 5],
+    [t => t.map, x => x * 2],
+    [t => t.map, x => x + 1],
+    [t => t.filter, x => x % 3 === 0],
+  );
+  console.log(result); // [3, 9]
   
   // call async-function
   func = (n) => Promise.resolve(n);

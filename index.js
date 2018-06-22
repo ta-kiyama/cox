@@ -13,7 +13,7 @@ const generateEffect = typeSymbol => (callback, ...args) => {
     args = [];
   }
 
-  const thisArg = (typeSymbol === callSymbol) ? args.shift() : undefined;
+  const thisArg = typeSymbol === callSymbol ? args.shift() : undefined;
 
   return {
     callback,
@@ -21,6 +21,14 @@ const generateEffect = typeSymbol => (callback, ...args) => {
     thisArg,
     [typeSymbol]: true
   };
+};
+
+const chainEffect = function*(thisArg, ...actors) {
+  for (const [selector, ...args] of actors) {
+    const callback = selector(thisArg);
+    thisArg = yield call(callback, thisArg, ...args);
+  }
+  return thisArg;
 };
 
 const execNextArg = value => {
@@ -31,7 +39,8 @@ const execNextArg = value => {
     [execSymbol]: isExec,
     [callSymbol]: isCall,
     [makeSymbol]: isMake
-  } = value || {};
+  } =
+    value || {};
 
   if (isExec) {
     return callback(...args);
@@ -83,6 +92,7 @@ const makeSymbol = (exports.makeSymbol = Symbol("make"));
 const exec = (exports.exec = generateEffect(execSymbol));
 const call = (exports.call = generateEffect(callSymbol));
 const make = (exports.make = generateEffect(makeSymbol));
+const chain = (exports.chain = chainEffect);
 
 exports.cox = cox;
 exports.default = cox;
