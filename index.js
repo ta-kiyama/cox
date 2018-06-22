@@ -72,6 +72,8 @@ const cox = gen => function() {
   }
 };
 
+module.exports = cox;
+
 const execSymbol = (exports.execSymbol = Symbol("exec"));
 const callSymbol = (exports.callSymbol = Symbol("call"));
 const makeSymbol = (exports.makeSymbol = Symbol("make"));

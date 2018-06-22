@@ -1,6 +1,6 @@
 {
   "name": "@ta-kiyama/cox",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "redux-saga like proxy generator with Async Generator",
   "main": "index",
   "scripts": {
