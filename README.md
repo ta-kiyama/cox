@@ -64,13 +64,15 @@ cox.wrap(function* (arg) {
 ## async function(async-cox-generator)
 
 ```js
+import cox from "@ta-kiyama/cox";
+
 cox.wrap(async function* (arg) {
   let result, func;
   
   console.log(arg); // "fuga"
   
   // call sync-function(same as sync-cox-generator)
-  result = yield exec(Date.now);
+  result = yield cox(Date.now);
   console.log(result); // 1529633615127
   
   // call async-function
