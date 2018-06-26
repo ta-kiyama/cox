@@ -1,3 +1,4 @@
+import cox from "./index";
 import coxSymbols from "./symbols";
 
 const execNextArg = value => {
@@ -17,7 +18,7 @@ const execNextArg = value => {
     case coxSymbols.new:
       return [new callback(...args), options];
     case coxSymbols.chain:
-      return [wrap(callback)(thisArg, ...args), options];
+      return [cox.wrap(callback)(thisArg, ...args), options];
     default:
       return [value, {}];
   }

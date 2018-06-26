@@ -7,7 +7,7 @@ const stepAsync = async (value) => {
   const [nextArg, options] = execNextArg(value);
 
   if(options.isError) throw nextArg;
-  console.log(options.isAsync, nextArg);
+
   return (options.isAsync) ? await nextArg : nextArg;
 };
 

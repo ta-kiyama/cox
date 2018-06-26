@@ -161,5 +161,10 @@ cox.wrap(async function* (arg) {
       
       result = subFunc.next();
       expect(result.callback).toBe(Array.prototype.map));
+      
+      result = subFunc.next(cox.step(result)); // cox.step is a converter util. this convert cox-object to calculated value
+      /* if async generator, use cox.stepAsync instead.
+      result = subFunc.next(cox.stepAsync(result));
+      */
     });
     ```
