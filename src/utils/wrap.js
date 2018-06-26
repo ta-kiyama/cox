@@ -7,6 +7,9 @@ const stepAsync = $stepAsync.value;
 
 const wrap = gen => function wrap() {
   const itr = gen.apply(this, arguments);
+
+  if (typeof itr.next !== "function") throw new TypeError(`first argument which name is ${gen.name} must be a generator function or async generator function.`);
+
   const firstResult = itr.next();
   const isAsync = firstResult instanceof Promise;
 
