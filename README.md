@@ -51,7 +51,7 @@ cox.wrap(function* (arg) {
   result = yield cox.chain(
     () => [1, 2, 3, 4, 5],
     [t => t.map, x => x * 2],
-    [t => t.filter, x => x % 3 === 0],
+    [t => t.filter, x => x % 3 !== 0],
   );
   console.log(result); // [2, 4, 8, 10]
   
@@ -64,13 +64,15 @@ cox.wrap(function* (arg) {
 ## async function(async-cox-generator)
 
 ```js
+import cox from "@ta-kiyama/cox";
+
 cox.wrap(async function* (arg) {
   let result, func;
   
   console.log(arg); // "fuga"
   
   // call sync-function(same as sync-cox-generator)
-  result = yield exec(Date.now);
+  result = yield cox(Date.now);
   console.log(result); // 1529633615127
   
   // call async-function
@@ -110,7 +112,7 @@ cox.wrap(async function* (arg) {
       yield cox.chain(
         () => [1, 2, 3, 4, 5],
         [t => t.map, x => x * 2],
-        [t => t.filter, x => x % 3 === 0],
+        [t => t.filter, x => x % 3 !== 0],
       );
     };
     ```
@@ -144,7 +146,7 @@ cox.wrap(async function* (arg) {
       // func is generator function. so you can access with `next()`
       result = func.next();
       
-      console.log(result); // { callback: `[Function parse]`, args: [{ a: 10 }], thisArg: undefined, type: `[Symbol cox]`, isAsync: false, isError: false }
+      console.log(result); // { callback: `[Function stringify]`, args: [{ a: 10 }], thisArg: undefined, type: `[Symbol cox]`, isAsync: false, isError: false }
       
       // you can test generator result
       expect(result.callback).toBe(JSON.parse));
