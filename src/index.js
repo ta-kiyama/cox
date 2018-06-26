@@ -1,5 +1,7 @@
 import coxSymbols from "./symbols";
-import wrap from "./wrap";
+import wrap from "./utils/wrap";
+import step from "./utils/step";
+import stepAsync from "./utils/stepAsync";
 import $cox from "./effects/$cox";
 import $call from "./effects/$call";
 import $new from "./effects/$new";
@@ -9,6 +11,8 @@ import $throw from "./effects/$throw";
 
 Object.defineProperties($cox, {
   wrap,
+  step,
+  stepAsync,
   call: $call(),
   new: $new(),
   chain: $chain(),

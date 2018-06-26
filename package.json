@@ -1,11 +1,11 @@
 {
   "name": "@ta-kiyama/cox",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "redux-saga like proxy generator with Async Generator",
   "main": "dist/main.js",
   "scripts": {
-    "dev": "webpack --mode development --output-library-target commonjs --module-bind js=babel-loader",
-    "build": "webpack --mode production --output-library-target commonjs --module-bind js=babel-loader",
+    "dev": "webpack --mode development --output-library-target commonjs2 --module-bind js=babel-loader",
+    "build": "webpack --mode production --output-library-target commonjs2 --module-bind js=babel-loader",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
