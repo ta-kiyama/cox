@@ -1,5 +1,5 @@
 import cox from "./index";
-import coxSymbols from "./symbols";
+import coxSymbols from "./utils/symbols";
 
 const execNextArg = value => {
   const {
