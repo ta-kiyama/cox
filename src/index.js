@@ -1,4 +1,4 @@
-import coxSymbols from "./symbols";
+import coxSymbols from "./utils/symbols";
 import wrap from "./utils/wrap";
 import step from "./utils/step";
 import stepAsync from "./utils/stepAsync";
@@ -10,6 +10,12 @@ import $await from "./effects/$await";
 import $throw from "./effects/$throw";
 
 Object.defineProperties($cox, {
+  symbol: {
+    value: coxSymbols,
+    enumerable: true,
+    writable: true,
+    configurable: true,
+  },
   wrap,
   step,
   stepAsync,

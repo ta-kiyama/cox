@@ -1,4 +1,4 @@
-import coxSymbols from "../symbols";
+import coxSymbols from "../utils/symbols";
 import cox from "../index";
 import generateEffect from "../generateEffect";
 import generateEffectProps from "../generateEffectProps";

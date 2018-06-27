@@ -1,4 +1,4 @@
-import coxSymbols from "./symbols"
+import coxSymbols from "./utils/symbols"
 
 const generateEffect = (typeSymbol, options = {}, defaultEffect) => (...args) => {
   if (Array.isArray(args[0])) args = args[0];
