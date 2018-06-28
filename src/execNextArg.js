@@ -7,8 +7,14 @@ const execNextArg = value => {
     args,
     thisArg,
     type,
-    options,
+    isAsync,
+    isError,
   } = value || {};
+
+  const options = {
+    isAsync,
+    isError,
+  };
 
   switch(type) {
     case coxSymbols.cox:
@@ -19,6 +25,8 @@ const execNextArg = value => {
       return [new callback(...args), options];
     case coxSymbols.chain:
       return [cox.wrap(callback)(thisArg, ...args), options];
+    case coxSymbols.raw:
+      return [thisArg, options];
     default:
       return [value, {}];
   }

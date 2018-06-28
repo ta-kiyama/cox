@@ -10,20 +10,20 @@ const generateEffect = (typeSymbol, options = {}, defaultEffect) => (...args) =>
         return args.shift();
       case coxSymbols.chain:
         return args.shift()();
+      case coxSymbols.raw:
+        return callback;
       default:
         return undefined;
     }
   })();
 
   return {
-    callback,
+    callback: (typeSymbol !== coxSymbols.raw) ? callback : undefined,
     args,
     thisArg,
     type: typeSymbol,
-    options: {
-      isAsync: !!options.isAsync,
-      isError: !!options.isError,
-    },
+    isAsync: !!options.isAsync,
+    isError: !!options.isError,
   };
 };
 

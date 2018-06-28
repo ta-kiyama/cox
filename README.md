@@ -89,9 +89,13 @@ cox.wrap(async function* (arg) {
   );
   console.log(result); // "first resolved is 500"
   
-  // yield only variables or literals
+  // yield raw
   result = yield [100, 200];
   console.log(result); // [100, 200]
+  /* or, return raw cox object
+  result = yield cox.raw([100, 200]);
+  console.log(result); // { callback: undefined, args: [], thisArg: [100, 200], type: `[Symbol raw]`, isAsync: false, isError: false }
+  */
 })("fuga");
 ```
 
@@ -146,7 +150,7 @@ cox.wrap(async function* (arg) {
       // func is generator function. so you can access with `next()`
       result = func.next();
       
-      console.log(result); // { callback: `[Function stringify]`, args: [{ a: 10 }], thisArg: undefined, type: `[Symbol cox]`, isAsync: false, isError: false }
+      console.log(result.value); // { callback: `[Function stringify]`, args: [{ a: 10 }], thisArg: undefined, type: `[Symbol cox]`, isAsync: false, isError: false }
       
       // you can test generator result
       expect(result.callback).toBe(JSON.parse));
@@ -164,7 +168,7 @@ cox.wrap(async function* (arg) {
       
       result = subFunc.next(cox.step(result)); // cox.step is a converter util. this convert cox-object to calculated value
       /* if async generator, use cox.stepAsync instead.
-      result = subFunc.next(cox.stepAsync(result));
+      result = subFunc.next(await cox.stepAsync(result));
       */
     });
     ```
