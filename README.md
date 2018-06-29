@@ -153,22 +153,22 @@ cox.wrap(async function* (arg) {
       console.log(result.value); // { callback: `[Function stringify]`, args: [{ a: 10 }], thisArg: undefined, type: `[Symbol cox]`, isAsync: false, isError: false }
       
       // you can test generator result
-      expect(result.callback).toBe(JSON.parse));
-      expect(result.args[0]).toMatchObject({ a: 10 });
-      expect(result.type).toBe(coxSymbols.cox);
+      expect(result.value.callback).toBe(JSON.parse));
+      expect(result.value.args[0]).toMatchObject({ a: 10 });
+      expect(result.value.type).toBe(coxSymbols.cox);
       
       // when call `next()` again, you can next cox-object
       result = func.next();
-      expect(result.type).toBe(coxSymbols.chain);
+      expect(result.value.type).toBe(coxSymbols.chain);
       
-      const subFunc = result.callback(); // chain()'s callback is generator function. so, you can test same as main generator.
+      const subFunc = result.value.callback(); // chain()'s callback is generator function. so, you can test same as main generator.
       
       result = subFunc.next();
-      expect(result.callback).toBe(Array.prototype.map));
+      expect(result.value.callback).toBe(Array.prototype.map));
       
-      result = subFunc.next(cox.step(result)); // cox.step is a converter util. this convert cox-object to calculated value
+      result = subFunc.next(cox.step(result.value)); // cox.step is a converter util. this convert cox-object to calculated value
       /* if async generator, use cox.stepAsync instead.
-      result = subFunc.next(await cox.stepAsync(result));
+      result = subFunc.next(await cox.stepAsync(result.value));
       */
     });
     ```
