@@ -18,7 +18,14 @@ const wrap = gen => function wrap() {
       let { value, done } = await firstResult;
 
       while (!done) {
-        const nextArg = await stepAsync(value);
+      let nextArg, hasError;
+        try{
+          nextArg = await stepAsync(value);
+        }
+        catch(err) {
+          hasError = err;
+        }
+
         const result = await itr.next(nextArg);
 
         value = result.value;
@@ -31,8 +38,15 @@ const wrap = gen => function wrap() {
     let { value, done } = firstResult;
 
     while (!done) {
-      const nextArg = step(value);
-      const result = itr.next(nextArg);
+      let nextArg, hasError;
+      try{
+        nextArg = step(value);
+      }
+      catch(err) {
+        hasError = err;
+      }
+
+      const result = (hasError) ? itr.throw(hasError) : itr.next(nextArg);
 
       value = result.value;
       done = result.done;
