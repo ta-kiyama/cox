@@ -1,11 +1,8 @@
 import generateEffectProps from "../generateEffectProps";
 
-const $if = (expression, resultValue) => {
-  if(Array.isArray(expression) && resultValue === undefined) [expression, resultValue] = expression;
-  if(!expression) return resultValue;
-  if((expression instanceof Error) && !(resultValue instanceof Error)) throw expression;
-
-  throw resultValue;
+const $if = (err) => {
+	if(err instanceof Error) throw err;
+	return err;
 };
 
 export default generateEffectProps((options) => $if)();
