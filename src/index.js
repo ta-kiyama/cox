@@ -1,6 +1,7 @@
 import coxSymbols from "./utils/symbols";
 import wrap from "./utils/wrap";
 import step from "./utils/step";
+import $if from "./utils/$if";
 import stepAsync from "./utils/stepAsync";
 import $cox from "./effects/$cox";
 import $call from "./effects/$call";
@@ -36,6 +37,7 @@ Object.defineProperties(cox.await, {
 });
 
 Object.defineProperties(cox.throw, {
+  if: $if,
   cox: $cox({ isError: true }),
   call: $call({ isError: true }),
   new: $new({ isError: true }),
