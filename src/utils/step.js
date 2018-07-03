@@ -7,7 +7,7 @@ const step = (value) => {
   if(options.isAsync) throw new TypeError("cox-generator cannot use `await`. please use cox-async-generator instead.");
   if(options.isError) throw nextArg;
 
-  return nextArg;
+  return () => nextArg;
 };
 
 export default generateEffectProps((options) => step)();
