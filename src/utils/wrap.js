@@ -26,7 +26,7 @@ const wrap = gen => function wrap() {
           hasError = err;
         }
 
-        const result = await ((hasError) ? itr.throw(hasError) : itr.next(nextArg));
+        const result = await ((hasError) ? itr.throw(hasError) : itr.next(nextArg()));
 
         value = result.value;
         done = result.done;

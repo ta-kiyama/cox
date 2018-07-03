@@ -167,8 +167,9 @@ cox.wrap(async function* (arg) {
       expect(result.value.callback).toBe(Array.prototype.map));
       
       result = subFunc.next(cox.step(result.value)); // cox.step is a converter util. this convert cox-object to calculated value
-      /* if async generator, use cox.stepAsync instead.
-      result = subFunc.next(await cox.stepAsync(result.value));
+      /* if async generator, use cox.stepAsync instead. (always return function!!)
+      const resultFn = await cox.stepAsync(result.value);
+      result = subFunc.next(resultFn());
       */
     });
     ```

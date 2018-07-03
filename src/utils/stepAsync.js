@@ -9,7 +9,7 @@ const stepAsync = async (value) => {
   if(options.isAsync) nextArg = await nextArg;
   if(options.isError) throw nextArg;
 
-  return nextArg;
+  return () => nextArg;
 };
 
 export default generateEffectProps((options) => stepAsync)();
