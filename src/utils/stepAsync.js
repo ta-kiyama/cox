@@ -1,10 +1,10 @@
 import execNextArg from "../execNextArg";
 import generateEffectProps from "../generateEffectProps";
 
-const stepAsync = async (value) => {
-  value = (value instanceof Promise) ? (await value).value : value;
+const stepAsync = async (iteratorResult) => {
+  if(iteratorResult instanceof Promise) iteratorResult = await iteratorResult;
 
-  let [nextArg, options] = execNextArg(value);
+  let [nextArg, options] = execNextArg(iteratorResult.value);
 
   if(options.isAsync) nextArg = await nextArg;
   if(options.isError) throw nextArg;
