@@ -20,7 +20,7 @@ const wrap = gen => function wrap() {
       while (!done) {
       let nextArg, hasError;
         try{
-          nextArg = await stepAsync(value);
+          nextArg = await stepAsync({ value, done });
         }
         catch(err) {
           hasError = err;
@@ -40,7 +40,7 @@ const wrap = gen => function wrap() {
     while (!done) {
       let nextArg, hasError;
       try{
-        nextArg = step(value);
+        nextArg = step({ value, done });
       }
       catch(err) {
         hasError = err;
