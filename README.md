@@ -77,7 +77,7 @@ cox.wrap(async function* (arg) {
   
   // call async-function
   func = (n) => Promise.resolve(n);
-  result = yield cox.await(func, 50);
+  result = yield cox.await.cox(func, 50);
   console.log(result); // 50
   
   // you can set cox.chain finalizer
