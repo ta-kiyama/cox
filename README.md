@@ -161,10 +161,11 @@ cox.wrap(async function* (arg) {
       result = func.next();
       expect(result.value.type).toBe(coxSymbols.chain);
       
-      const subFunc = result.value.callback(); // chain()'s callback is generator function. so, you can test same as main generator.
+      const thisArg = { map }; // create a mock of arguments of subFunc
+      const subFunc = result.value.callback(thisArg, ...result.value.args); // chain()'s callback is generator function. so, you can test same as main generator.
       
-      result = subFunc.next();
-      expect(result.value.callback).toBe(Array.prototype.map));
+      result = subFunc.next(thisArg);
+      expect(result.value.callback).toBe(thisArg.map));
       
       result = subFunc.next(cox.step(result)()); // cox.step is a converter util. this convert IteratorResult to calculated value
       /* if async generator, use cox.stepAsync instead.
