@@ -60,29 +60,29 @@ declare namespace cox {
    * @param finalizer? thisに対して最終加工をすることが出来ます
    * @return CoxObject
    */
-  function $chain<T, U, P1 extends Array<any>, R1>(
+  function $chain<T, P1 extends Array<any>, R1>(
     initializer: () => T,
     args1: [(thisArg: T) => (...args: P1) => R1, ...any[]],
   ): CoxObject<"chain", (thisArg: T, ...args: P1) => IterableIterator<R1>, P1, T>;
-  function $chain<T, U, P1 extends Array<any>, P2 extends Array<any>, R1, R2>(
+  function $chain<T, P1 extends Array<any>, P2 extends Array<any>, R1, R2>(
     initializer: () => T,
     args1: [(thisArg: T) => (...args: P1) => R1, ...any[]],
     args2: [(thisArg: R1) => (...args: P2) => R2, ...any[]],
   ): CoxObject<"chain", (thisArg: T, ...args: P1) => IterableIterator<R1 | R2>, P1, T>;
-  function $chain<T, U, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, R1, R2, R3>(
+  function $chain<T, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, R1, R2, R3>(
     initializer: () => T,
     args1: [(thisArg: T) => (...args: P1) => R1, ...any[]],
     args2: [(thisArg: R1) => (...args: P2) => R2, ...any[]],
     args3: [(thisArg: R2) => (...args: P3) => R3, ...any[]],
   ): CoxObject<"chain", (thisArg: T, ...args: P1) => IterableIterator<R1 | R2 | R3>, P1, T>;
-  function $chain<T, U, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, P4 extends Array<any>, R1, R2, R3, R4>(
+  function $chain<T, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, P4 extends Array<any>, R1, R2, R3, R4>(
     initializer: () => T,
     args1: [(thisArg: T) => (...args: P1) => R1, ...any[]],
     args2: [(thisArg: R1) => (...args: P2) => R2, ...any[]],
     args3: [(thisArg: R2) => (...args: P3) => R3, ...any[]],
     args4: [(thisArg: R3) => (...args: P4) => R4, ...any[]],
   ): CoxObject<"chain", (thisArg: T, ...args: P1) => IterableIterator<R1 | R2 | R3 | R4>, P1, T>;
-  function $chain<T, U, P1 extends Array<any>, R1, R2>(
+  function $chain<T, P1 extends Array<any>, R1, R2>(
     initializer: () => T,
     args1: [(thisArg: T) => (...args: P1) => R1, ...any[]],
     finalizer: (thisArg: R1) => R2,
@@ -93,14 +93,14 @@ declare namespace cox {
     args2: [(thisArg: R1) => (...args: P2) => R2, ...any[]],
     finalizer: (thisArg: R2) => R3,
   ): CoxObject<"chain", (thisArg: T, ...args: P1) => IterableIterator<R1 | R2 | R3>, P1, T>;
-  function $chain<T, U, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, R1, R2, R3, R4>(
+  function $chain<T, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, R1, R2, R3, R4>(
     initializer: () => T,
     args1: [(thisArg: T) => (...args: P1) => R1, ...any[]],
     args2: [(thisArg: R1) => (...args: P2) => R2, ...any[]],
     args3: [(thisArg: R2) => (...args: P3) => R3, ...any[]],
     finalizer: (thisArg: R3) => R4,
   ): CoxObject<"chain", (thisArg: T, ...args: P1) => IterableIterator<R1 | R2 | R3 | R4>, P1, T>;
-  function $chain<T, U, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, P4 extends Array<any>, R1, R2, R3, R4, R5>(
+  function $chain<T, P1 extends Array<any>, P2 extends Array<any>, P3 extends Array<any>, P4 extends Array<any>, R1, R2, R3, R4, R5>(
     initializer: () => T,
     args1: [(thisArg: T) => (...args: P1) => R1, ...any[]],
     args2: [(thisArg: R1) => (...args: P2) => R2, ...any[]],
