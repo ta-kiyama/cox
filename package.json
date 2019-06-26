@@ -1,8 +1,9 @@
 {
   "name": "@ta-kiyama/cox",
-  "version": "7.2.0",
+  "version": "8.1.0",
   "description": "redux-saga like proxy generator with Async Generator",
   "main": "dist/main.js",
+  "types": "./index.d.ts",
   "scripts": {
     "dev": "webpack --mode development --output-library-target commonjs2 --module-bind js=babel-loader",
     "build": "webpack --mode production --output-library-target commonjs2 --devtool source-map --module-bind js=babel-loader",
